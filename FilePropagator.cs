@@ -1,6 +1,5 @@
 ﻿using Microsoft.Win32;
 using System.IO;
-using System.Linq;
 using System.Windows;
 
 namespace DirectoryFilePropagationUtilsLibrary
@@ -17,7 +16,7 @@ namespace DirectoryFilePropagationUtilsLibrary
         {
             try
             {
-                CopyFile(rootFolderPath, fileDialog);
+                FileCopyUtils.CopyFile(rootFolderPath, fileDialog);
             }
             catch (IOException ex)
             {
@@ -28,7 +27,7 @@ namespace DirectoryFilePropagationUtilsLibrary
             string[] directories = Directory
                 .GetDirectories(rootFolderPath);
 
-            if (IsNoChildDirectories(directories))
+            if (ChildDirectoriesChecker.IsNoChildDirectories(directories))
             {
                 return true;
             }
@@ -39,22 +38,6 @@ namespace DirectoryFilePropagationUtilsLibrary
             }
 
             return true;
-        }
-
-        private static bool IsNoChildDirectories(string[] directories)
-        {
-            return directories.Count() == 0;
-        }
-
-        private static void CopyFile(string rootFolderPath, OpenFileDialog fileDialog)
-        {
-            File.Copy(
-                fileDialog.FileName,
-                Path.Combine(
-                        rootFolderPath,
-                        fileDialog.SafeFileName
-                )
-            );
         }
     }
 }
