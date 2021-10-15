@@ -1,6 +1,6 @@
-﻿using Microsoft.Win32;
-using System.IO;
+﻿using System.IO;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace DirectoryFilePropagationUtilsLibrary
 {
