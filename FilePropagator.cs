@@ -17,13 +17,7 @@ namespace DirectoryFilePropagationUtilsLibrary
         {
             try
             {
-                File.Copy(
-                    fileDialog.FileName,
-                    Path.Combine(
-                            rootFolderPath,
-                            fileDialog.SafeFileName
-                    )
-                );
+                CopyFile(rootFolderPath, fileDialog);
             }
             catch (IOException ex)
             {
@@ -34,7 +28,7 @@ namespace DirectoryFilePropagationUtilsLibrary
             string[] directories = Directory
                 .GetDirectories(rootFolderPath);
 
-            if (directories.Count() == 0)
+            if (IsNoChildDirectories(directories))
             {
                 return true;
             }
@@ -45,6 +39,22 @@ namespace DirectoryFilePropagationUtilsLibrary
             }
 
             return true;
+        }
+
+        private static bool IsNoChildDirectories(string[] directories)
+        {
+            return directories.Count() == 0;
+        }
+
+        private static void CopyFile(string rootFolderPath, OpenFileDialog fileDialog)
+        {
+            File.Copy(
+                fileDialog.FileName,
+                Path.Combine(
+                        rootFolderPath,
+                        fileDialog.SafeFileName
+                )
+            );
         }
     }
 }
