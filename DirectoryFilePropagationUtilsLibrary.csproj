@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChildDirectoriesChecker.cs" />
+    <Compile Include="CopyHistoryWriter.cs" />
     <Compile Include="FileCopyUtils.cs" />
     <Compile Include="FilePropagator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
